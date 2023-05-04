@@ -152,12 +152,22 @@ params:
 
 ## Queueing
 
+The http-log plugin uses internal queues to decouple the production of
+log entries from their transmission to the upstream log server.  In
+contrast to other plugins that uses queues, it shares one queue
+between all plugin instances that use the same log server parameter.
+Equivalence of the log server is determined by the parameters
+`http_endpoint`, `method`, `content_type`, `timeout` and `keepalive`.
+All plugin instances that have the same values for these parameters
+share one queue.
+
+
 {% include /md/plugins-hub/queue-parameters.md %}
 
 ## Log format
 
 {:.note}
-> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+> **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
 
 {% include /md/plugins-hub/log-format.md %}
 
