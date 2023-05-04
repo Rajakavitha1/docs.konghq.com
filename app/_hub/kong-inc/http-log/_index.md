@@ -89,20 +89,25 @@ params:
       datatype: number
       description: |
         Optional time in seconds. If `queue_size` > 1, this is the max idle time before sending a log with less than `queue_size` records.    
-      maximum_version: "3.1.x"
+      maximum_version: "3.2.x"
     - name: retry_count
       required: false
       default: 10
       value_in_examples: 15
       datatype: integer
       description: Number of times to retry when sending data to the upstream server.
-      maximum_version: "3.1.x"
+      maximum_version: "3.2.x"
     - name: queue_size
       required: false
       default: 1
       datatype: integer
       description: Maximum number of log entries to be sent on each message to the upstream server.
-      maximum_version: "3.1.x"
+      maximum_version: "3.2.x"
+    - name: queue
+      required: false
+      datatype: record
+      description: Configuration parameters for queue (XXX link to queue parameters missing)
+      minimum_version: "3.3.x"
 
     # ----- Old version of the 'headers' parameter -----
     - name: headers
@@ -144,6 +149,10 @@ params:
         the log field value.
       minimum_version: "2.4.x"
 ---
+
+## Queueing
+
+{% include /md/plugins-hub/queue-parameters.md %}
 
 ## Log format
 
